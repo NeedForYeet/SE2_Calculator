@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         double dividend = Double.parseDouble(fieldDividend.getText().toString());
         double divisor = Double.parseDouble(fieldDivisor.getText().toString());
 
-
         // take Double instead of regular double for .toString() in setText()
         Double result = dividend / divisor;
 

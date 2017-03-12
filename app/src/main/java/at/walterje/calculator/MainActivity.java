@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText fieldDividend = (EditText) findViewById(R.id.inputDividend);
-    private EditText fieldDivisor = (EditText) findViewById(R.id.inputDivisor);
+    EditText fieldDividend;
+    EditText fieldDivisor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
                 calculateResult();
             }
         });
+
+        fieldDividend = (EditText) findViewById(R.id.inputDividend);
+        fieldDivisor = (EditText) findViewById(R.id.inputDivisor);
     }
 
-    /** Calculate the result of both entered values
+    /**
+     * Calculate the result of both entered values
      * and print them on the screen.
      */
     private void calculateResult() {
@@ -53,10 +57,34 @@ public class MainActivity extends AppCompatActivity {
      * @return true if errors occured
      */
     private boolean checkForInputErrors() {
-        if (fieldDivisor.getText().toString().equals("0")) {
+        String inputDivisor = fieldDivisor.getText().toString();
+        String inputDividend = fieldDividend.getText().toString();
+
+        // check for divide by zero
+        if (inputDivisor.equals("0")) {
+            setErrorMessage(fieldDivisor, "Can't divide by zero.");
+            return true;
+        }
+
+        // check for input starting with '.'
+        if (inputDividend.startsWith(".") || inputDividend.isEmpty()) {
+            setErrorMessage(fieldDividend, "Input must start with a number.");
+            return true;
+        }
+        if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()) {
+            setErrorMessage(fieldDivisor, "Input must start with a number.");
             return true;
         }
         return false;
+    }
+
+    /**
+     * Sets an error message on a given field.
+     * @param textField Field to show the error message at
+     * @param errorMessage Error message to show
+     */
+    private void setErrorMessage(EditText textField, String errorMessage) {
+        textField.setError(errorMessage);
     }
 
 }

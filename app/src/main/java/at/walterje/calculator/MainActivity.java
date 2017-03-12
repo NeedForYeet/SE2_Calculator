@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,19 @@ public class MainActivity extends AppCompatActivity {
      * and print them on the screen.
      */
     private void calculateResult() {
+        EditText fieldDividend = (EditText) findViewById(R.id.inputDividend);
+        EditText fieldDivisor = (EditText) findViewById(R.id.inputDivisor);
 
+        // get the actual double values from the user input
+        double dividend = Double.parseDouble(fieldDividend.getText().toString());
+        double divisor = Double.parseDouble(fieldDivisor.getText().toString());
+
+
+        // take Double instead of regular double for .toString() in setText()
+        Double result = dividend / divisor;
+
+        // show the result onscreen
+        TextView outputResult = (TextView) findViewById(R.id.textResult);
+        outputResult.setText(result.toString());
     }
 }

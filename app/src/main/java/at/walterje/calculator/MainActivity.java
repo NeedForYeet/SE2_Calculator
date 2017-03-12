@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearFieldErrors();
                 calculateResult();
             }
         });
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void calculateResult() {
 
+        // check for errors before trying to parse the input to double
         if (checkForInputErrors()) {
             return;
         }
@@ -60,19 +62,23 @@ public class MainActivity extends AppCompatActivity {
         String inputDivisor = fieldDivisor.getText().toString();
         String inputDividend = fieldDividend.getText().toString();
 
+
         // check for divide by zero
         if (inputDivisor.equals("0")) {
             setErrorMessage(fieldDivisor, "Can't divide by zero.");
+            fieldDivisor.requestFocus();
             return true;
         }
 
         // check for input starting with '.'
         if (inputDividend.startsWith(".") || inputDividend.isEmpty()) {
             setErrorMessage(fieldDividend, "Input must start with a number.");
+            fieldDividend.requestFocus();
             return true;
         }
         if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()) {
             setErrorMessage(fieldDivisor, "Input must start with a number.");
+            fieldDivisor.requestFocus();
             return true;
         }
         return false;
@@ -85,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setErrorMessage(EditText textField, String errorMessage) {
         textField.setError(errorMessage);
+    }
+
+    /**
+     * Clears the errors for both fields
+     * Somewhat unnecessary as of now.
+     */
+    private void clearFieldErrors() {
+        fieldDivisor.setError(null);
+        fieldDivisor.setError(null);
     }
 
 }

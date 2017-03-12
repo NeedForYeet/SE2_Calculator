@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText fieldDividend = (EditText) findViewById(R.id.inputDividend);
+    private EditText fieldDivisor = (EditText) findViewById(R.id.inputDivisor);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
      * and print them on the screen.
      */
     private void calculateResult() {
-        EditText fieldDividend = (EditText) findViewById(R.id.inputDividend);
-        EditText fieldDivisor = (EditText) findViewById(R.id.inputDivisor);
+
+        if (checkForInputErrors()) {
+            return;
+        }
 
         // get the actual double values from the user input
         double dividend = Double.parseDouble(fieldDividend.getText().toString());
@@ -42,4 +47,16 @@ public class MainActivity extends AppCompatActivity {
         TextView outputResult = (TextView) findViewById(R.id.textResult);
         outputResult.setText(result.toString());
     }
+
+    /**
+     * Checks for errors in user input, e.g. divide by zero
+     * @return true if errors occured
+     */
+    private boolean checkForInputErrors() {
+        if (fieldDivisor.getText().toString().equals("0")) {
+            return true;
+        }
+        return false;
+    }
+
 }

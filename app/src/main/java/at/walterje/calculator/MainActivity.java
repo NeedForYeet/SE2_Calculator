@@ -62,26 +62,29 @@ public class MainActivity extends AppCompatActivity {
         String inputDivisor = fieldDivisor.getText().toString();
         String inputDividend = fieldDividend.getText().toString();
 
+        boolean hasError = false;
 
         // check for divide by zero
         if (inputDivisor.equals("0")) {
             setErrorMessage(fieldDivisor, "Can't divide by zero.");
             fieldDivisor.requestFocus();
-            return true;
+            hasError = true;
         }
 
-        // check for input starting with '.'
-        if (inputDividend.startsWith(".") || inputDividend.isEmpty()) {
+        // check for input starting with '.', '-' or is empty
+        if (inputDividend.startsWith(".") || inputDividend.isEmpty()
+                || inputDividend.equals("-")) {
             setErrorMessage(fieldDividend, "Input must start with a number.");
             fieldDividend.requestFocus();
-            return true;
+            hasError = true;
         }
-        if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()) {
+        if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()
+                || inputDivisor.equals("-")) {
             setErrorMessage(fieldDivisor, "Input must start with a number.");
             fieldDivisor.requestFocus();
-            return true;
+            hasError = true;
         }
-        return false;
+        return hasError;
     }
 
     /**
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
      * Somewhat unnecessary as of now.
      */
     private void clearFieldErrors() {
-        fieldDivisor.setError(null);
+        fieldDividend.setError(null);
         fieldDivisor.setError(null);
     }
 

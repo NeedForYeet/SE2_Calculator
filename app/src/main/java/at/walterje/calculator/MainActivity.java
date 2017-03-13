@@ -71,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
             hasError = true;
         }
 
-        // check for input starting with '.', '-' or is empty
+        // check for input starting with '.', '-', is empty, or "-."
         if (inputDividend.startsWith(".") || inputDividend.isEmpty()
-                || inputDividend.equals("-")) {
-            setErrorMessage(fieldDividend, "Input must start with a number.");
+                || inputDividend.equals("-") || inputDividend.startsWith("-.")) {
+            setErrorMessage(fieldDividend, "Malformed input.");
             fieldDividend.requestFocus();
             hasError = true;
         }
         if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()
-                || inputDivisor.equals("-")) {
-            setErrorMessage(fieldDivisor, "Input must start with a number.");
+                || inputDivisor.equals("-") || inputDivisor.startsWith("-.")) {
+            setErrorMessage(fieldDivisor, "Malformed input.");
             fieldDivisor.requestFocus();
             hasError = true;
         }

@@ -3,4 +3,14 @@
     <item name="visible" type="id"/>    <!-- This is to fix an annoying bug with Android Studio and TextInputLayout
                                         See https://code.google.com/p/android/issues/detail?id=230766 -->
     <item name="masked" type="id"/>
+
+    <string name="output_text">Output: </string>
+    <string name="string_dividend">Dividend</string>
+    <string name="string_divisor">Divisor</string>
+    <string name="string_calculate">Calculate</string>
+    <string name="string_empty"> </string>
+
+    <!-- Error strings -->
+    <string name="string_malformed_input">Malformed input.</string>
+    <string name="string_div_zero">Can\'t divide by zero.</string>
 </resources>

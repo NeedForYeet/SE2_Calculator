@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         // check for divide by zero
         if (inputDivisor.equals("0")) {
-            setErrorMessage(fieldDivisor, "Can't divide by zero.");
+            setErrorMessage(fieldDivisor, getString(R.string.string_div_zero));
             fieldDivisor.requestFocus();
             hasError = true;
         }
@@ -74,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
         // check for input starting with '.', '-', is empty, or "-."
         if (inputDividend.startsWith(".") || inputDividend.isEmpty()
                 || inputDividend.equals("-") || inputDividend.startsWith("-.")) {
-            setErrorMessage(fieldDividend, "Malformed input.");
+            setErrorMessage(fieldDividend, getString(R.string.string_malformed_input));
             fieldDividend.requestFocus();
             hasError = true;
         }
         if (inputDivisor.startsWith(".") || inputDivisor.isEmpty()
                 || inputDivisor.equals("-") || inputDivisor.startsWith("-.")) {
-            setErrorMessage(fieldDivisor, "Malformed input.");
+            setErrorMessage(fieldDivisor, getString(R.string.string_malformed_input));
             fieldDivisor.requestFocus();
             hasError = true;
         }
